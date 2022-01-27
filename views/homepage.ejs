@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      
+
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-lg-10 max-auto">
+                <div class="card shadow">
+                    <h4>Add Item</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/save" method="POST" id="add_form">
+                        <div id="show_item">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <input type="text" name="product_name[]" class="form-control" placeholder="Item Name">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <input type="number" name="product_price[]" class="form-control" placeholder="Item Price">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <input type="text" name="product_qnt[]" class="form-control" placeholder="Item Quantity">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <button class="btn btn-success add_item_btn">Add More</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" value="Add" name="add" class="btn btn-primary w-25" id="add_btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $(".add_item_btn").click(function(e){
+                e.preventDefault();
+                $("#show_item").append(`<div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <input type="text" name="product_name[]" class="form-control" placeholder="Item Name">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <input type="number" name="product_price[]" class="form-control" placeholder="Item Price">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <input type="text" name="product_qnt[]" class="form-control" placeholder="Item Quantity">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <button class="btn btn-danger remove_item_btn">Remove</button>
+                                </div>
+                            </div>`)
+            });
+            $(document).on('click','.remove_item_btn',function(e){
+                e.preventDefault();
+                let row_item=$(this).parent().parent();
+                $(row_item).remove();
+            });
+        });
+    </script>
+  </body>
+</html>
